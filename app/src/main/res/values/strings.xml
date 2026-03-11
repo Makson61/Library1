@@ -1,3 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Library</string>
+
+    <string name="home_title">Главная</string>
+    <string name="my_books_title">Мои книги</string>
+    <string name="search_hint">Поиск...</string>
+    <string name="new_items">Новинки</string>
+    <string name="best_items">Лучшее</string>
+    <string name="book_title">Название</string>
+    <string name="genre">Жанр</string>
+    <string name="genre_classic">Классика</string>
+    <string name="genre_fantasy">Фантастика</string>
+    <string name="nav_home">Главная</string>
+    <string name="nav_my_books">Мои книги</string>
+    <string name="nav_profile">Профиль</string>
+
+    <string name="nav_home_a11y">Вкладка Главная</string>
+    <string name="nav_my_books_a11y">Вкладка Мои книги</string>
+    <string name="nav_profile_a11y">Вкладка Профиль</string>
+
+    <string name="cd_search">Поиск</string>
+    <string name="cd_menu">Меню</string>
+    <string name="cd_clear">Очистить поиск</string>
+    <string name="cd_new">Новинки</string>
+    <string name="cd_best">Лучшее</string>
+
+    <string name="cd_genre_classic">Жанр: Классика</string>
+    <string name="cd_genre_fantasy">Жанр: Фантастика</string>
+    <string name="cd_genre_3">Жанр 3</string>
+    <string name="cd_genre_4">Жанр 4</string>
+    <string name="cd_genre_5">Жанр 5</string>
+    <string name="cd_genre_6">Жанр 6</string>
+    <string name="cd_genre_7">Жанр 7</string>
+    <string name="cd_genre_8">Жанр 8</string>
+    <string name="cd_genre_9">Жанр 9</string>
 </resources>

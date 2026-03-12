@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2C2C2C">
+    android:background="#1F1F1F">
 
     <ScrollView
         android:id="@+id/contentScroll"
@@ -24,63 +24,19 @@
             android:paddingTop="12dp"
             android:paddingBottom="88dp">
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/headerBar"
+            <TextView
+                android:id="@+id/titleHome"
                 android:layout_width="match_parent"
-                android:layout_height="48dp">
-
-                <TextView
-                    android:id="@+id/titleHome"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="@string/home_title"
-                    android:textAlignment="center"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/headerActions"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-
-                <LinearLayout
-                    android:id="@+id/headerActions"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent">
-
-                    <ImageView
-                        android:id="@+id/iconSearch"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_marginEnd="4dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:contentDescription="@string/cd_search"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:padding="12dp"
-                        android:src="@drawable/ic_search"
-                        app:tint="#FFFFFF" />
-
-                    <ImageView
-                        android:id="@+id/iconMenu"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:contentDescription="@string/cd_menu"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:padding="12dp"
-                        android:src="@drawable/ic_menu"
-                        app:tint="#9B59FF" />
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:paddingVertical="4dp"
+                android:text="@string/home_title"
+                android:textColor="#8B56FF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -147,18 +103,17 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
                         android:contentDescription="@string/cd_new"
-                        android:src="@drawable/ic_books"
-                        app:tint="#000000" />
+                        android:src="@drawable/ic_books"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="@string/new_items"
-                        android:textColor="#000000"
+                        android:textColor="#fff"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -175,11 +130,10 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
                         android:contentDescription="@string/cd_best"
-                        android:src="@drawable/ic_globe"
-                        app:tint="#FFFFFF" />
+                        android:src="@drawable/ic_globe"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -418,7 +372,7 @@
         android:gravity="center"
         android:orientation="horizontal"
         android:baselineAligned="false"
-        android:layout_marginBottom="8dp"
+        android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -430,15 +384,16 @@
             android:layout_weight="1"
             android:gravity="center"
             android:contentDescription="@string/nav_home_a11y"
-            app:drawableTopCompat="@drawable/ic_home"
-            android:drawablePadding="4dp"
+            app:drawableTopCompat="@drawable/ic_home_bold"
+            android:drawablePadding="-4dp"
             android:text="@string/nav_home"
-            android:textColor="#9B59FF"
+            android:textColor="#8B56FF"
             android:textSize="12sp"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?attr/selectableItemBackground"
-            app:drawableTint="#9B59FF" />
+            android:textStyle="bold"
+            app:drawableTint="#8B56FF" />
 
         <TextView
             android:id="@+id/navMyBooks"
@@ -450,12 +405,12 @@
             app:drawableTopCompat="@drawable/ic_library"
             android:drawablePadding="4dp"
             android:text="@string/nav_my_books"
-            android:textColor="#FFFFFF"
+            android:textColor="#8B56FF"
             android:textSize="12sp"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?attr/selectableItemBackground"
-            app:drawableTint="#FFFFFF" />
+            app:drawableTint="#BFBFBF" />
 
         <TextView
             android:id="@+id/navProfile"
@@ -467,12 +422,12 @@
             app:drawableTopCompat="@drawable/ic_profile"
             android:drawablePadding="4dp"
             android:text="@string/nav_profile"
-            android:textColor="#FFFFFF"
+            android:textColor="#8B56FF"
             android:textSize="12sp"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?attr/selectableItemBackground"
-            app:drawableTint="#FFFFFF" />
+            app:drawableTint="#BFBFBF" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

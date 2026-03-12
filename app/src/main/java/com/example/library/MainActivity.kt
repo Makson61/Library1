@@ -1,6 +1,5 @@
 ﻿package com.example.library
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -16,13 +15,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupClickHandlers() {
-        findViewById<View>(R.id.navMyBooks)?.setOnClickListener {
-            startActivity(Intent(this, MyBooksActivity::class.java))
-            overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
-        }
         val clickMap = mapOf(
-            R.id.iconSearch to R.string.cd_search,
-            R.id.iconMenu to R.string.cd_menu,
             R.id.searchContainer to R.string.search_hint,
             R.id.clearSearch to R.string.cd_clear,
             R.id.cardNew to R.string.new_items,
@@ -37,6 +30,7 @@ class MainActivity : AppCompatActivity() {
             R.id.genreTile8 to R.string.genre,
             R.id.genreTile9 to R.string.genre,
             R.id.navHome to R.string.nav_home,
+            R.id.navMyBooks to R.string.nav_my_books,
             R.id.navProfile to R.string.nav_profile
         )
 

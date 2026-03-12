@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E0E0E0">
+    android:background="#E3E3E3">
 
     <ScrollView
         android:id="@+id/contentScroll"
@@ -24,63 +24,19 @@
             android:paddingTop="12dp"
             android:paddingBottom="88dp">
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/headerBar"
+            <TextView
+                android:id="@+id/titleHome"
                 android:layout_width="match_parent"
-                android:layout_height="48dp">
-
-                <TextView
-                    android:id="@+id/titleHome"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="@string/home_title"
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/headerActions"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" />
-
-                <LinearLayout
-                    android:id="@+id/headerActions"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent">
-
-                    <ImageView
-                        android:id="@+id/iconSearch"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_marginEnd="4dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:contentDescription="@string/cd_search"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:padding="12dp"
-                        android:src="@drawable/ic_search"
-                        app:tint="#000000" />
-
-                    <ImageView
-                        android:id="@+id/iconMenu"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:contentDescription="@string/cd_menu"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:padding="12dp"
-                        android:src="@drawable/ic_menu"
-                        app:tint="#000000" />
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:paddingVertical="4dp"
+                android:text="@string/home_title"
+                android:textColor="#0B4D7A"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -137,28 +93,28 @@
                 <LinearLayout
                     android:id="@+id/cardNew"
                     android:layout_width="0dp"
-                    android:layout_height="110dp"
+                    android:layout_height="match_parent"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_card_brown"
                     android:clickable="true"
-                    android:focusable="true"
+
                     android:foreground="?attr/selectableItemBackground"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
                         android:contentDescription="@string/cd_new"
-                        android:src="@drawable/ic_books"
-                        app:tint="#000000" />
+                        android:src="@drawable/ic_books" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="@string/new_items"
-                        android:textColor="#000000"
+                        android:textColor="#ffffff"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -175,11 +131,10 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:layout_width="72dp"
+                        android:layout_height="72dp"
                         android:contentDescription="@string/cd_best"
-                        android:src="@drawable/ic_globe"
-                        app:tint="#FFFFFF" />
+                        android:src="@drawable/ic_globe"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -413,11 +368,12 @@
     <LinearLayout
         android:id="@+id/bottomBar"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="64dp"
         android:background="@drawable/bg_bottom_light"
         android:baselineAligned="false"
         android:gravity="center"
         android:orientation="horizontal"
+        android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -430,16 +386,17 @@
             android:layout_weight="1"
             android:clickable="true"
             android:contentDescription="@string/nav_home_a11y"
-            android:drawablePadding="4dp"
+            android:drawablePadding="-5dp"
             android:focusable="true"
             android:foreground="?attr/selectableItemBackground"
             android:gravity="center"
             android:minHeight="48dp"
             android:text="@string/nav_home"
-            android:textColor="#000000"
-            android:textSize="12sp"
-            app:drawableTint="#000000"
-            app:drawableTopCompat="@drawable/ic_home" />
+            android:textColor="#0B4D7A"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:drawableTopCompat="@drawable/ic_home_bold"
+            />
 
         <TextView
             android:id="@+id/navMyBooks"
@@ -454,9 +411,9 @@
             android:gravity="center"
             android:minHeight="48dp"
             android:text="@string/nav_my_books"
-            android:textColor="#000000"
-            android:textSize="12sp"
-            app:drawableTint="#000000"
+            android:textColor="#0B4D7A"
+            android:textSize="14sp"
+            android:textStyle="bold"
             app:drawableTopCompat="@drawable/ic_library" />
 
         <TextView
@@ -472,14 +429,13 @@
             android:gravity="center"
             android:minHeight="48dp"
             android:text="@string/nav_profile"
-            android:textColor="#000000"
-            android:textSize="12sp"
-            app:drawableTint="#000000"
+            android:textColor="#0B4D7A"
+            android:textSize="14sp"
+            android:textStyle="bold"
             app:drawableTopCompat="@drawable/ic_profile" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
 

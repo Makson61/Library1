@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/profileRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E0E0E0">
+
+    <ScrollView
+        android:id="@+id/profileScroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/profileBottomBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="96dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/profileTitle"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_top_bar_light"
+                android:gravity="center"
+                android:text="Профиль"
+                android:textColor="#1F4E79"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:baselineAligned="false">
+
+                <ImageView
+                    android:id="@+id/profileAvatar"
+                    android:layout_width="88dp"
+                    android:layout_height="88dp"
+                    android:background="@drawable/bg_avatar_light"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_profile"
+                    android:tint="#8B56FF" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/profilePickText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Выбор авы"
+                        android:textColor="#D93025"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/profilePickButton"
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:layout_marginTop="6dp"
+                        android:background="@drawable/bg_avatar_button"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_profile"
+                        android:tint="#4AB2B8" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/profileName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Имя пользователя"
+                android:textColor="#111111"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/profileEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Email: ........................."
+                    android:textColor="#111111"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/profilePassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Пароль: ......................."
+                    android:textColor="#111111"
+                    android:textSize="12sp" />
+
+                <EditText
+                    android:id="@+id/profileAbout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_input_light"
+                    android:hint="О себе"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="6dp"
+                    android:textColor="#111111"
+                    android:textColorHint="#333333"
+                    android:textSize="12sp" />
+
+                <Button
+                    android:id="@+id/profileLogout"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_button_primary"
+                    android:text="Выйти"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/profileBottomBar"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:background="@drawable/bg_bottom_light"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/profileNavHome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:contentDescription="@string/nav_home_a11y"
+            app:drawableTopCompat="@drawable/ic_home"
+            android:drawablePadding="4dp"
+            android:text="@string/nav_home"
+            android:textColor="#222222"
+            android:textSize="12sp"
+            android:clickable="true"
+            android:focusable="true"
+            app:drawableTint="#222222" />
+
+        <TextView
+            android:id="@+id/profileNavMyBooks"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:contentDescription="@string/nav_my_books_a11y"
+            app:drawableTopCompat="@drawable/ic_library"
+            android:drawablePadding="4dp"
+            android:text="@string/nav_my_books"
+            android:textColor="#222222"
+            android:textSize="12sp"
+            android:clickable="true"
+            android:focusable="true"
+            app:drawableTint="#222222" />
+
+        <TextView
+            android:id="@+id/profileNavProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:contentDescription="@string/nav_profile_a11y"
+            app:drawableTopCompat="@drawable/ic_profile"
+            android:drawablePadding="4dp"
+            android:text="@string/nav_profile"
+            android:textColor="#1F4E79"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:clickable="false"
+            android:focusable="false"
+            app:drawableTint="#1F4E79" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

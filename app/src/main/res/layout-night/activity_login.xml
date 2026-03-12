@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/loginRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#202020">
+
+    <ScrollView
+        android:id="@+id/loginScroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/loginBottomBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="96dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/loginTitle"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_top_bar_dark"
+                android:gravity="center"
+                android:text="Профиль"
+                android:textColor="#8B56FF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="84dp"
+                android:layout_height="84dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_books"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="BookShelf"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Ваш список книг для чтения"
+                android:textColor="#CFCFCF"
+                android:textSize="12sp" />
+
+            <EditText
+                android:id="@+id/inputName"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/bg_input_dark"
+                android:hint="Имя"
+                android:inputType="textPersonName"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:paddingHorizontal="10dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#BBBBBB"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/inputBirth"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_input_dark"
+                android:hint="Дата рождения"
+                android:paddingHorizontal="10dp"
+                android:drawableEnd="@drawable/ic_calendar"
+                android:drawablePadding="8dp"
+                android:clickable="true"
+                android:focusable="false"
+                android:inputType="none"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#BBBBBB"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/inputEmail"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_input_dark"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:paddingHorizontal="10dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#BBBBBB"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/inputPassword"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_input_dark"
+                android:hint="Пароль"
+                android:inputType="textPassword"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:paddingHorizontal="10dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#BBBBBB"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/buttonAction"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_button_primary"
+                android:text="Войти"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/toggleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Еще нет аккаунта? Создать"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/loginBottomBar"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:background="@drawable/bg_bottom_dark"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/loginNavHome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:contentDescription="@string/nav_home_a11y"
+            app:drawableTopCompat="@drawable/ic_home"
+            android:drawablePadding="4dp"
+            android:text="@string/nav_home"
+            android:textColor="#BFBFBF"
+            android:textSize="12sp"
+            android:clickable="false"
+            android:focusable="false"
+            app:drawableTint="#BFBFBF" />
+
+        <TextView
+            android:id="@+id/loginNavMyBooks"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:contentDescription="@string/nav_my_books_a11y"
+            app:drawableTopCompat="@drawable/ic_library"
+            android:drawablePadding="4dp"
+            android:text="@string/nav_my_books"
+            android:textColor="#BFBFBF"
+            android:textSize="12sp"
+            android:clickable="false"
+            android:focusable="false"
+            app:drawableTint="#BFBFBF" />
+
+        <TextView
+            android:id="@+id/loginNavProfile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:contentDescription="@string/nav_profile_a11y"
+            app:drawableTopCompat="@drawable/ic_profile"
+            android:drawablePadding="4dp"
+            android:text="@string/nav_profile"
+            android:textColor="#8B56FF"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:clickable="false"
+            android:focusable="false"
+            app:drawableTint="#8B56FF" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

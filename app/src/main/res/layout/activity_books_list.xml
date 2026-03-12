@@ -1,61 +1,75 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rootLayout"
+    android:id="@+id/listRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1F1F1F">
+    android:background="#E0E0E0">
+
+    <TextView
+        android:id="@+id/listTitle"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginHorizontal="24dp"
+        android:background="@drawable/bg_top_bar_light"
+        android:gravity="center"
+        android:text="Новинки"
+        android:textColor="#1F4E79"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/contentRecycler"
+        android:id="@+id/listRecycler"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipToPadding="false"
-        android:paddingHorizontal="16dp"
         android:paddingTop="12dp"
         android:paddingBottom="88dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bottomBar"
+        android:paddingHorizontal="24dp"
+        app:layout_constraintTop_toBottomOf="@id/listTitle"
+        app:layout_constraintBottom_toTopOf="@id/listBottomBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:itemCount="12"
-        tools:listitem="@layout/item_genre_tile"
-        tools:spanCount="3" />
+        tools:itemCount="6"
+        tools:listitem="@layout/item_book_row" />
 
     <LinearLayout
-        android:id="@+id/bottomBar"
+        android:id="@+id/listBottomBar"
         android:layout_width="0dp"
         android:layout_height="64dp"
-        android:background="@drawable/bg_bottom_dark"
+        android:background="@drawable/bg_bottom_light"
+        android:baselineAligned="false"
         android:gravity="center"
         android:orientation="horizontal"
-        android:baselineAligned="false"
         android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/navHome"
+            android:id="@+id/listNavHome"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:contentDescription="@string/nav_home_a11y"
-            app:drawableTopCompat="@drawable/ic_home_bold"
-            android:drawablePadding="-4dp"
+            app:drawableTopCompat="@drawable/ic_home"
+            android:drawablePadding="4dp"
             android:text="@string/nav_home"
-            android:textColor="#8B56FF"
+            android:textColor="#1F4E79"
             android:textSize="12sp"
+            android:textStyle="bold"
             android:clickable="true"
             android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            android:textStyle="bold"
-            app:drawableTint="#8B56FF" />
+            app:drawableTint="#1F4E79" />
 
         <TextView
-            android:id="@+id/navMyBooks"
+            android:id="@+id/listNavMyBooks"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -64,15 +78,14 @@
             app:drawableTopCompat="@drawable/ic_library"
             android:drawablePadding="4dp"
             android:text="@string/nav_my_books"
-            android:textColor="#8B56FF"
+            android:textColor="#222222"
             android:textSize="12sp"
             android:clickable="true"
             android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            app:drawableTint="#BFBFBF" />
+            app:drawableTint="#222222" />
 
         <TextView
-            android:id="@+id/navProfile"
+            android:id="@+id/listNavProfile"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -81,18 +94,11 @@
             app:drawableTopCompat="@drawable/ic_profile"
             android:drawablePadding="4dp"
             android:text="@string/nav_profile"
-            android:textColor="#8B56FF"
+            android:textColor="#222222"
             android:textSize="12sp"
             android:clickable="true"
             android:focusable="true"
-            android:foreground="?attr/selectableItemBackground"
-            app:drawableTint="#BFBFBF" />
+            app:drawableTint="#222222" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
-

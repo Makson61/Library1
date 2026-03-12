@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Library">
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.Library">
             <intent-filter>
@@ -20,6 +20,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Library" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Library" />
+        <activity
+            android:name=".BooksListActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Library" />
+        <activity
+            android:name=".GenreBooksActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Library" />
+        <activity
+            android:name=".BookDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Library" />
+        <activity
+            android:name=".MyBooksActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Library" />
     </application>
 
 </manifest>

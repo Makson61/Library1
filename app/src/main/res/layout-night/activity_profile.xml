@@ -50,8 +50,7 @@
                     android:layout_height="88dp"
                     android:background="@drawable/bg_avatar_dark"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_profile"
-                    android:tint="#8B56FF" />
+                    android:src="@drawable/ic_profile"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -64,7 +63,7 @@
                         android:id="@+id/profilePickText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Выбор авы"
+                        android:text="Загрузить"
                         android:textColor="#FF6B6B"
                         android:textSize="12sp"
                         android:textStyle="bold" />
@@ -192,7 +191,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:contentDescription="@string/nav_profile_a11y"
-            app:drawableTopCompat="@drawable/ic_profile"
+            app:drawableTopCompat="@drawable/ic_profile_bold"
             android:drawablePadding="4dp"
             android:text="@string/nav_profile"
             android:textColor="#8B56FF"

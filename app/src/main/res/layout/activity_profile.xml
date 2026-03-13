@@ -50,8 +50,7 @@
                     android:layout_height="88dp"
                     android:background="@drawable/bg_avatar_light"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_profile"
-                    android:tint="#8B56FF" />
+                    android:src="@drawable/ic_profile"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -64,8 +63,8 @@
                         android:id="@+id/profilePickText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Выбор авы"
-                        android:textColor="#D93025"
+                        android:text="Выбрать"
+                        android:textColor="#1F4E79"
                         android:textSize="12sp"
                         android:textStyle="bold" />
 
@@ -76,8 +75,7 @@
                         android:layout_marginTop="6dp"
                         android:background="@drawable/bg_avatar_button"
                         android:padding="6dp"
-                        android:src="@drawable/ic_profile"
-                        android:tint="#4AB2B8" />
+                        android:src="@drawable/ic_profile"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -192,15 +190,14 @@
             android:layout_weight="1"
             android:gravity="center"
             android:contentDescription="@string/nav_profile_a11y"
-            app:drawableTopCompat="@drawable/ic_profile"
+            app:drawableTopCompat="@drawable/ic_profile_bold"
             android:drawablePadding="4dp"
             android:text="@string/nav_profile"
             android:textColor="#1F4E79"
             android:textSize="12sp"
             android:textStyle="bold"
             android:clickable="false"
-            android:focusable="false"
-            app:drawableTint="#1F4E79" />
+            android:focusable="false" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

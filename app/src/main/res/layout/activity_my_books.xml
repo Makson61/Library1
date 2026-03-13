@@ -25,7 +25,7 @@
     <LinearLayout
         android:id="@+id/myBooksSearchRow"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="44dp"
         android:layout_marginTop="10dp"
         android:layout_marginHorizontal="24dp"
         android:gravity="center_vertical"
@@ -40,8 +40,13 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/bg_search_light"
-            android:hint="@string/search_hint"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="8dp"
+            android:drawableTint="#6B6B6B"
+            android:hint="@string/search_my_books_hint"
+            android:imeOptions="actionSearch"
             android:inputType="text"
+            android:maxLines="1"
             android:paddingHorizontal="12dp"
             android:textColor="#111111"
             android:textColorHint="#666666"
@@ -55,6 +60,10 @@
             android:background="@drawable/bg_circle_white"
             android:padding="6dp"
             android:src="@drawable/ic_close"
+            android:contentDescription="@string/cd_clear"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
             android:tint="#000000" />
 
         <ImageView
@@ -65,8 +74,115 @@
             android:background="@drawable/bg_circle_white"
             android:padding="6dp"
             android:src="@drawable/ic_menu"
+            android:contentDescription="@string/cd_filter"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
             android:tint="#1F4E79" />
     </LinearLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/myBooksFiltersScroll"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="24dp"
+        android:scrollbars="none"
+        app:layout_constraintTop_toBottomOf="@id/myBooksSearchRow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/myBooksFiltersRow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/myBooksFilterStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_filter_chip"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:paddingHorizontal="12dp"
+                android:text="@string/filter_status"
+                android:textColor="@color/filter_chip_text"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/myBooksFilterGenre"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_filter_chip"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:paddingHorizontal="12dp"
+                android:text="@string/filter_genre"
+                android:textColor="@color/filter_chip_text"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/myBooksFilterYear"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_filter_chip"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:paddingHorizontal="12dp"
+                android:text="@string/filter_year"
+                android:textColor="@color/filter_chip_text"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/myBooksFilterReset"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:background="@drawable/bg_filter_chip"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:paddingHorizontal="12dp"
+                android:text="@string/filters_reset"
+                android:textColor="@color/filter_chip_text"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/myBooksResultsInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:layout_marginHorizontal="24dp"
+        android:text="@string/results_count"
+        android:textColor="#5B6A72"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/myBooksFiltersScroll"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/myBooksRecycler"
@@ -76,10 +192,40 @@
         android:paddingTop="12dp"
         android:paddingBottom="88dp"
         android:paddingHorizontal="24dp"
-        app:layout_constraintTop_toBottomOf="@id/myBooksSearchRow"
+        app:layout_constraintTop_toBottomOf="@id/myBooksResultsInfo"
         app:layout_constraintBottom_toTopOf="@id/myBooksBottomBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/myBooksEmptyState"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingHorizontal="32dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/myBooksResultsInfo"
+        app:layout_constraintBottom_toTopOf="@id/myBooksBottomBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/empty_results_title"
+            android:textColor="#1F4E79"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="@string/empty_results_hint"
+            android:textColor="#5B6A72"
+            android:textSize="13sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/myBooksBottomBar"
@@ -134,7 +280,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:contentDescription="@string/nav_profile_a11y"
-            app:drawableTopCompat="@drawable/ic_profile"
+            app:drawableTopCompat="@drawable/ic_profile_standart"
             android:drawablePadding="4dp"
             android:text="@string/nav_profile"
             android:textColor="#222222"

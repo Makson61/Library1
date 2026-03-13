@@ -29,12 +29,13 @@ class GenreBooksActivity : AppCompatActivity() {
 
         val genre = intent.getStringExtra(EXTRA_GENRE) ?: "Жанр"
         val image = intent.getStringExtra(EXTRA_IMAGE) ?: ""
+        val genreCover = resolveGenreCoverPath(genre, image)
         findViewById<TextView>(R.id.genreTitle).text = genre
 
-        val items = BooksRepository.getBooksForGenre(genre, image)
+        val items = BooksRepository.getBooksForGenre(assets, genre, genreCover)
         val recyclerView = findViewById<RecyclerView>(R.id.genreRecycler)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = GenreBooksAdapter(items) { openDetails(it) }
+        recyclerView.adapter = GenreBooksAdapter(assets, items, genreCover) { openDetails(it) }
 
         bindBottomBar()
     }
@@ -88,6 +89,21 @@ class GenreBooksActivity : AppCompatActivity() {
             view.setPadding(view.paddingLeft, systemBars.top, view.paddingRight, systemBars.bottom)
             insets
         }
+    }
+
+    private fun resolveGenreCoverPath(genre: String, provided: String): String {
+        if (provided.isNotBlank() && assetExists(provided)) return provided
+        val files = assets.list("genres") ?: return provided
+        val match = files.firstOrNull { file ->
+            val name = file.substringBeforeLast('.').replace('_', ' ')
+            name.equals(genre, ignoreCase = true)
+        }
+        return if (match != null) "genres/$match" else provided
+    }
+
+    private fun assetExists(path: String): Boolean {
+        if (path.isBlank()) return false
+        return runCatching { assets.open(path).close() }.isSuccess
     }
 
     companion object {

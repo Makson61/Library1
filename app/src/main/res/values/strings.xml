@@ -5,6 +5,8 @@
     <string name="home_title">Главная</string>
     <string name="my_books_title">Мои книги</string>
     <string name="search_hint">Поиск...</string>
+    <string name="search_books_hint">Поиск по книгам</string>
+    <string name="search_my_books_hint">Поиск по моим книгам</string>
     <string name="new_items">Новинки</string>
     <string name="best_items">Лучшее</string>
     <string name="book_title">Название</string>
@@ -14,6 +16,31 @@
     <string name="nav_home">Главная</string>
     <string name="nav_my_books">Мои книги</string>
     <string name="nav_profile">Профиль</string>
+    <string name="section_genres">Жанры</string>
+    <string name="section_results">Результаты поиска</string>
+    <string name="results_count">Найдено: %1$d</string>
+    <string name="empty_results_title">Ничего не найдено</string>
+    <string name="empty_results_hint">Попробуйте изменить запрос или фильтры</string>
+
+    <string name="filter_all">Все</string>
+    <string name="filter_genre">Жанр</string>
+    <string name="filter_type">Тип</string>
+    <string name="filter_year">Год</string>
+    <string name="filter_status">Статус</string>
+    <string name="filters_title">Фильтры</string>
+    <string name="filters_reset">Сбросить</string>
+    <string name="filter_chip_genre">Жанр: %1$s</string>
+    <string name="filter_chip_type">Тип: %1$s</string>
+    <string name="filter_chip_year">Год: %1$s</string>
+    <string name="filter_chip_status">Статус: %1$s</string>
+
+    <string name="status_default">Добавить в список</string>
+    <string name="status_will_read">Буду читать</string>
+    <string name="status_reading">Читаю</string>
+    <string name="status_done">Прочитано</string>
+    <string name="status_postponed">Отложено</string>
+    <string name="status_dropped">Брошено</string>
+    <string name="action_cancel">Отмена</string>
 
     <string name="nav_home_a11y">Вкладка Главная</string>
     <string name="nav_my_books_a11y">Вкладка Мои книги</string>
@@ -22,6 +49,7 @@
     <string name="cd_search">Поиск</string>
     <string name="cd_menu">Меню</string>
     <string name="cd_clear">Очистить поиск</string>
+    <string name="cd_filter">Фильтры</string>
     <string name="cd_new">Новинки</string>
     <string name="cd_best">Лучшее</string>
 

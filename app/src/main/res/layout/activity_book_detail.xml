@@ -182,7 +182,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:contentDescription="@string/nav_profile_a11y"
-            app:drawableTopCompat="@drawable/ic_profile"
+            app:drawableTopCompat="@drawable/ic_profile_standart"
             android:drawablePadding="4dp"
             android:text="@string/nav_profile"
             android:textColor="#222222"

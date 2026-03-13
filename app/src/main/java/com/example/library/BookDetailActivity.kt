@@ -5,6 +5,8 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Spinner
@@ -38,31 +40,49 @@ class BookDetailActivity : AppCompatActivity() {
         val year = intent.getStringExtra(EXTRA_YEAR) ?: "-"
         val heroes = intent.getStringExtra(EXTRA_HEROES) ?: "-"
         val cover = intent.getStringExtra(EXTRA_COVER) ?: ""
+        val fallback = "-"
 
         findViewById<TextView>(R.id.detailTitle).text = title
-        findViewById<TextView>(R.id.detailType).text = "Тип: $type"
-        findViewById<TextView>(R.id.detailGenre).text = "Жанр: $genre"
-        findViewById<TextView>(R.id.detailTheme).text = "Тема: $theme"
-        findViewById<TextView>(R.id.detailAuthor).text = "Автор: $author"
-        findViewById<TextView>(R.id.detailYear).text = "Выпуск: $year"
-        findViewById<TextView>(R.id.detailHeroes).text = "Главные герои: $heroes"
+        findViewById<TextView>(R.id.detailType).text = "Тип: ${type.ifBlank { fallback }}"
+        findViewById<TextView>(R.id.detailGenre).text = "Жанр: ${genre.ifBlank { fallback }}"
+        findViewById<TextView>(R.id.detailTheme).text = "Тема: ${theme.ifBlank { fallback }}"
+        findViewById<TextView>(R.id.detailAuthor).text = "Автор: ${author.ifBlank { fallback }}"
+        findViewById<TextView>(R.id.detailYear).text = "Выпуск: ${year.ifBlank { fallback }}"
+        findViewById<TextView>(R.id.detailHeroes).text = "Главные герои: ${heroes.ifBlank { fallback }}"
 
         val coverView = findViewById<ImageView>(R.id.detailCover)
-        if (cover.isNotBlank()) {
+        val resolvedCover = resolveCoverPath(cover, genre)
+        if (resolvedCover.isNotBlank() && resolvedCover.startsWith("genres/", true)) {
+            val bitmap = loadAssetBitmap(resolvedCover)
+            if (bitmap != null) {
+                coverView.setImageBitmap(bitmap)
+            } else {
+                coverView.setImageResource(R.drawable.ic_books)
+            }
+        } else if (resolvedCover.isNotBlank()) {
+            val model = if (resolvedCover.startsWith("http", true)) {
+                resolvedCover
+            } else {
+                "file:///android_asset/${resolvedCover}"
+            }
             Glide.with(coverView)
-                .load("file:///android_asset/$cover")
+                .load(model)
                 .centerCrop()
+                .placeholder(R.drawable.ic_books)
+                .error(R.drawable.ic_books)
                 .into(coverView)
+        } else {
+            coverView.setImageResource(R.drawable.ic_books)
         }
 
         val spinner = findViewById<Spinner>(R.id.detailStatus)
         val options = listOf(
-            "Добавить в список",
-            "Буду читать",
-            "Читаю",
-            "Прочитано",
-            "Отложено",
-            "Брошено"
+            getString(R.string.status_default),
+            getString(R.string.status_will_read),
+            getString(R.string.status_reading),
+            getString(R.string.status_done),
+            getString(R.string.status_postponed),
+            getString(R.string.status_dropped)
         )
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, options)
         spinner.adapter = adapter
@@ -126,4 +146,35 @@ class BookDetailActivity : AppCompatActivity() {
         const val EXTRA_HEROES = "extra_heroes"
         const val EXTRA_COVER = "extra_cover"
     }
+
+    private fun resolveCoverPath(bookCoverPath: String, genre: String): String {
+        val trimmed = bookCoverPath.trim()
+        if (trimmed.startsWith("http", true)) return trimmed
+        if (trimmed.startsWith("books/covers/", true) && assetExists(trimmed)) return trimmed
+        return resolveGenreCoverPath(genre)
+    }
+
+    private fun resolveGenreCoverPath(genre: String): String {
+        val name = genre.trim()
+        if (name.isBlank()) return ""
+        val files = assets.list("genres") ?: return ""
+        val match = files.firstOrNull { file ->
+            val genreName = file.substringBeforeLast('.').replace('_', ' ')
+            genreName.equals(name, ignoreCase = true)
+        }
+        return match?.let { "genres/$it" }.orEmpty()
+    }
+
+    private fun assetExists(path: String): Boolean {
+        if (path.isBlank()) return false
+        return runCatching { assets.open(path).close() }.isSuccess
+    }
+
+    private fun loadAssetBitmap(path: String): Bitmap? {
+        if (path.isBlank()) return null
+        return runCatching {
+            assets.open(path).use { stream -> BitmapFactory.decodeStream(stream) }
+        }.getOrNull()
+    }
 }
+

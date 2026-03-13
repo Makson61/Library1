@@ -31,26 +31,29 @@ class BooksListActivity : AppCompatActivity() {
         val title = if (mode == MODE_BEST) getString(R.string.best_items) else getString(R.string.new_items)
         findViewById<TextView>(R.id.listTitle).text = title
 
-        val allItems = loadItemsFromAssets()
-        val items = if (mode == MODE_BEST) allItems.reversed() else allItems
+        val allBooks = BooksRepository.getAllBooks(assets)
+        val filtered = allBooks.filter { isQualityBook(it) }
+        val items = if (mode == MODE_BEST) filtered.reversed() else filtered
 
         val recyclerView = findViewById<RecyclerView>(R.id.listRecycler)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = BooksListAdapter(items)
+        recyclerView.adapter = BooksListAdapter(items) { openDetails(it) }
 
         bindBottomBar()
     }
 
-    private fun loadItemsFromAssets(): List<GenreItem> {
-        val files = assets.list("genres")
-            ?.filter { it.endsWith(".png", true) || it.endsWith(".jpg", true) || it.endsWith(".jpeg", true) }
-            ?: emptyList()
-        return files.mapIndexed { index, file ->
-            val name = file.substringBeforeLast('.')
-                .replace('_', ' ')
-                .replaceFirstChar { it.uppercase() }
-            GenreItem(index, name, "genres/$file")
-        }
+    private fun openDetails(item: BookItem) {
+        val intent = Intent(this, BookDetailActivity::class.java)
+        intent.putExtra(BookDetailActivity.EXTRA_ID, item.id)
+        intent.putExtra(BookDetailActivity.EXTRA_TITLE, item.title)
+        intent.putExtra(BookDetailActivity.EXTRA_TYPE, item.type)
+        intent.putExtra(BookDetailActivity.EXTRA_GENRE, item.genre)
+        intent.putExtra(BookDetailActivity.EXTRA_THEME, item.theme)
+        intent.putExtra(BookDetailActivity.EXTRA_AUTHOR, item.author)
+        intent.putExtra(BookDetailActivity.EXTRA_YEAR, item.year)
+        intent.putExtra(BookDetailActivity.EXTRA_HEROES, item.heroes)
+        intent.putExtra(BookDetailActivity.EXTRA_COVER, item.coverPath)
+        startActivity(intent)
     }
 
     private fun bindBottomBar() {
@@ -70,6 +73,41 @@ class BooksListActivity : AppCompatActivity() {
 
     private fun isLoggedIn(): Boolean = getSharedPreferences("auth_prefs", MODE_PRIVATE)
         .getBoolean("logged_in", false)
+
+    private fun isQualityBook(book: BookItem): Boolean {
+        return hasCover(book.coverPath)
+            && isNormalTitle(book.title)
+            && isFilled(book.type)
+            && isFilled(book.genre)
+            && isFilled(book.theme)
+            && isFilled(book.author)
+            && isFilled(book.year)
+            && isFilled(book.heroes)
+    }
+
+    private fun hasCover(coverPath: String): Boolean {
+        if (coverPath.isBlank()) return false
+        return try {
+            assets.open(coverPath).close()
+            true
+        } catch (_: Exception) {
+            false
+        }
+    }
+
+    private fun isNormalTitle(title: String): Boolean {
+        val trimmed = title.trim()
+        if (trimmed.length < 2) return false
+        if (!CYRILLIC_REGEX.containsMatchIn(trimmed)) return false
+        if (LATIN_REGEX.containsMatchIn(trimmed)) return false
+        return true
+    }
+
+    private fun isFilled(value: String): Boolean {
+        val trimmed = value.trim()
+        if (trimmed.isBlank()) return false
+        return !PLACEHOLDERS.contains(trimmed)
+    }
 
     private fun hideNavigationBar() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -94,5 +132,15 @@ class BooksListActivity : AppCompatActivity() {
         const val EXTRA_MODE = "mode"
         const val MODE_NEW = "new"
         const val MODE_BEST = "best"
+
+        private val CYRILLIC_REGEX = Regex("\\p{IsCyrillic}")
+        private val LATIN_REGEX = Regex("[A-Za-z]")
+        private val PLACEHOLDERS = setOf(
+            "-",
+            "\u041D\u0435 \u0443\u043A\u0430\u0437\u0430\u043D\u043E",
+            "\u041D\u0435\u0438\u0437\u0432\u0435\u0441\u0442\u043D\u043E",
+            "Unknown",
+            "N/A"
+        )
     }
 }
